@@ -1,4 +1,6 @@
-﻿using MenuAPI;
+﻿using System.Collections.Generic;
+
+using MenuAPI;
 
 namespace vMenuClient.menus
 {
@@ -10,7 +12,10 @@ namespace vMenuClient.menus
         private void CreateMenu()
         {
             // Create the menu.
-            menu = new Menu("vMenu", "About vMenu");
+            menu = new Menu(" ", "About vMenu")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
             // Create menu items.
             var version = new MenuItem("vMenu Version", $"This server is using vMenu ~b~~h~{MainMenu.Version}~h~~s~.")

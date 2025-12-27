@@ -23,7 +23,10 @@ namespace vMenuClient.menus
         // Menu variable, will be defined in CreateMenu()
         private Menu menu;
 
-        readonly Menu playerMenu = new("Online Players", "Player:");
+        readonly Menu playerMenu = new Menu(" ", "Player:")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
         IPlayer currentPlayer = new NativePlayer(Game.Player);
 
 
@@ -33,14 +36,14 @@ namespace vMenuClient.menus
         private void CreateMenu()
         {
             // Create the menu.
-            menu = new Menu(Game.Player.Name, "Online Players")
+            menu = new Menu(" ", "Online Players")
             {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8"),
                 CounterPreText = "Players: "
             };
 
             MenuController.AddSubmenu(menu, playerMenu);
 
-            var sendMessage = new MenuItem("Send Private Message", "Sends a private message to this player. ~r~Note: staff may be able to see all PM's.");
             var teleport = new MenuItem("Teleport To Player", "Teleport to this player.");
             var teleportVeh = new MenuItem("Teleport Into Player Vehicle", "Teleport into the vehicle of the player.");
             var summon = new MenuItem("Summon Player", "Teleport the player to you.");
@@ -52,10 +55,7 @@ namespace vMenuClient.menus
             var ban = new MenuItem("~r~Ban Player Permanently", "Ban this player permanently from the server. Are you sure you want to do this? You can specify the ban reason after clicking this button.");
             var tempban = new MenuItem("~r~Ban Player Temporarily", "Give this player a tempban of up to 30 days (max). You can specify duration and ban reason after clicking this button.");
 
-            if (IsAllowed(Permission.OPSendMessage))
-            {
-                playerMenu.AddMenuItem(sendMessage);
-            }
+            // permissions specific
             if (IsAllowed(Permission.OPTeleport))
             {
                 playerMenu.AddMenuItem(teleport);
@@ -108,37 +108,9 @@ namespace vMenuClient.menus
 
             // handle button presses for the specific player's menu.
             playerMenu.OnItemSelect += async (sender, item, index) =>
-            {
-                // send message
-                if (item == sendMessage)
-                {
-                    if (currentPlayer.Handle == Game.Player.Handle)
-                    {
-                        Notify.Error("You cannot message yourself!");
-                        return;
-                    }
-
-                    if (MainMenu.MiscSettingsMenu != null && !MainMenu.MiscSettingsMenu.MiscDisablePrivateMessages)
-                    {
-                        var message = await GetUserInput($"Private Message To {currentPlayer.Name}", 200);
-                        if (string.IsNullOrEmpty(message))
-                        {
-                            Notify.Error(CommonErrors.InvalidInput);
-                        }
-                        else
-                        {
-                            TriggerServerEvent("vMenu:SendMessageToPlayer", currentPlayer.ServerId, message);
-                            PrivateMessage(currentPlayer.ServerId.ToString(), message, true);
-                        }
-                    }
-                    else
-                    {
-                        Notify.Error("You can't send a private message if you have private messages disabled yourself. Enable them in the Misc Settings menu and try again.");
-                    }
-
-                }
+            { 
                 // teleport (in vehicle) button
-                else if (item == teleport || item == teleportVeh)
+                if (item == teleport || item == teleportVeh)
                 {
                     if (!currentPlayer.IsLocal)
                     {

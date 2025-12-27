@@ -23,6 +23,10 @@
 
     <Reference Include="Microsoft.CSharp" />
     
+    <PackageReference Include="CitizenFX.Core.Client" Version="1.0.10230">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\dependencies\shared\Newtonsoft.Json.dll</HintPath>
       <Private>true</Private>
