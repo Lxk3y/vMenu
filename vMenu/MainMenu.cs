@@ -502,10 +502,22 @@ namespace vMenuClient
                 return;
             }
             // Create the main menu.
-            Menu = new Menu(Game.Player.Name, "Main Menu");
-            PlayerSubmenu = new Menu(Game.Player.Name, "Player Related Options");
-            VehicleSubmenu = new Menu(Game.Player.Name, "Vehicle Related Options");
-            WorldSubmenu = new Menu(Game.Player.Name, "World Options");
+            Menu = new Menu(" ", "Main Menu")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            PlayerSubmenu = new Menu(" ", "Player Related Options")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            VehicleSubmenu = new Menu(" ", "Vehicle Related Options")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            WorldSubmenu = new Menu(" ", "World Options")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
             // Add the main menu to the menu pool.
             MenuController.AddMenu(Menu);

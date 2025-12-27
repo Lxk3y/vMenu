@@ -31,7 +31,10 @@ namespace vMenuClient.menus
         private void CreateMenu()
         {
             // Menu
-            menu = new Menu(GetSafePlayerName(Game.Player.Name), "Personal Vehicle Options");
+            menu = new Menu(" ", "Personal Vehicle Options")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
             // menu items
             var setVehice = new MenuItem("Set Vehicle", "Sets your current vehicle as your personal vehicle. If you already have a personal vehicle set then this will override your selection.") { Label = "Current Vehicle: None" };
@@ -51,7 +54,10 @@ namespace vMenuClient.menus
             var enableBlip = new MenuCheckboxItem("Add Blip For Personal Vehicle", "Enables or disables the blip that gets added when you mark a vehicle as your personal vehicle.", EnableVehicleBlip) { Style = MenuCheckboxItem.CheckboxStyle.Cross };
             var exclusiveDriver = new MenuCheckboxItem("Exclusive Driver", "If enabled, then you will be the only one that can enter the drivers seat. Other players will not be able to drive the car. They can still be passengers.", false) { Style = MenuCheckboxItem.CheckboxStyle.Cross };
             //submenu
-            VehicleDoorsMenu = new Menu("Vehicle Doors", "Vehicle Doors Management");
+            VehicleDoorsMenu = new Menu(" ", "Vehicle Doors Management")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             MenuController.AddSubmenu(menu, VehicleDoorsMenu);
             MenuController.BindMenuItem(menu, VehicleDoorsMenu, doorsMenuBtn);
 

@@ -22,16 +22,46 @@ namespace vMenuClient.menus
     {
         // Variables
         private Menu menu;
-        public Menu createCharacterMenu = new("Create Character", "Create A New Character");
-        public Menu savedCharactersMenu = new("vMenu", "Manage Saved Characters");
-        public Menu savedCharactersCategoryMenu = new("Category", "I get updated at runtime!");
-        public Menu inheritanceMenu = new("vMenu", "Character Inheritance Options");
-        public Menu appearanceMenu = new("vMenu", "Character Appearance Options");
-        public Menu faceShapeMenu = new("vMenu", "Character Face Shape Options");
-        public Menu tattoosMenu = new("vMenu", "Character Tattoo Options");
-        public Menu clothesMenu = new("vMenu", "Character Clothing Options");
-        public Menu propsMenu = new("vMenu", "Character Props Options");
-        private readonly Menu manageSavedCharacterMenu = new("vMenu", "Manage MP Character");
+        public Menu createCharacterMenu = new Menu(" ", "Create A New Character")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        public Menu savedCharactersMenu = new Menu(" ", "Manage Saved Characters")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        public Menu savedCharactersCategoryMenu = new Menu(" ", "I get updated at runtime!")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        public Menu inheritanceMenu = new Menu(" ", "Character Inheritance Options")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        public Menu appearanceMenu = new Menu(" ", "Character Appearance Options")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        public Menu faceShapeMenu = new Menu(" ", "Character Face Shape Options")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        public Menu tattoosMenu = new Menu(" ", "Character Tattoo Options")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        public Menu clothesMenu = new Menu(" ", "Character Clothing Options")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        public Menu propsMenu = new Menu(" ", "Character Props Options")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        private readonly Menu manageSavedCharacterMenu = new Menu(" ", "Manage MP Character")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
 
         // Need to be able to disable/enable these buttons from another class.
         internal MenuItem createMaleBtn = new("Create Male Character", "Create a new male character.") { Label = "→→→" };
@@ -915,7 +945,10 @@ namespace vMenuClient.menus
             }
 
             // Create the menu.
-            menu = new Menu(Game.Player.Name, "MP Ped Customization");
+            menu = new Menu(" ", "MP Ped Customization")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
             var savedCharacters = new MenuItem("Saved Characters", "Spawn, edit or delete your existing saved multiplayer characters.")
             {

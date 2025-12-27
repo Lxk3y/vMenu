@@ -1210,6 +1210,7 @@ namespace vMenuClient
         [EventHandler("vMenu:PlayerJoinQuit")]
         internal void OnJoinQuitNotification(string playerName, string dropReason)
         {
+            /*
             if (MainMenu.PermissionsSetupComplete && MainMenu.MiscSettingsMenu != null)
             {
                 // Join/Quit notifications
@@ -1225,6 +1226,7 @@ namespace vMenuClient
                     }
                 }
             }
+            */
         }
         #endregion
 

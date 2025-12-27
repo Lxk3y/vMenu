@@ -43,7 +43,10 @@ namespace vMenuClient.menus
 
             #region create main weapon options menu and add items
             // Create the menu.
-            menu = new Menu(Game.Player.Name, "Weapon Options");
+            menu = new Menu(" ", "Weapon Options")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
             var getAllWeapons = new MenuItem("Get All Weapons", "Get all weapons.");
             var removeAllWeapons = new MenuItem("Remove All Weapons", "Removes all weapons in your inventory.");
@@ -83,7 +86,10 @@ namespace vMenuClient.menus
 
             #region addonweapons submenu
             var addonWeaponsBtn = new MenuItem("Addon Weapons", "Equip / remove addon weapons available on this server.");
-            var addonWeaponsMenu = new Menu("Addon Weapons", "Equip/Remove Addon Weapons");
+            var addonWeaponsMenu = new Menu("Addon Weapons", "Equip/Remove Addon Weapons")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             MenuController.AddSubmenu(menu, addonWeaponsMenu);
             #endregion
 
@@ -101,7 +107,8 @@ namespace vMenuClient.menus
                     var addonWeaponMenu = new Menu("Weapon Options", addonWeapon.Name)
                     #region Create menu for this weapon and add buttons
                     {
-                        ShowWeaponStatsPanel = true
+                        ShowWeaponStatsPanel = true,
+                        HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
                     };
                     var stats = new Game.WeaponHudStats();
                     Game.GetWeaponHudStats(addonWeapon.Hash, ref stats);
@@ -276,7 +283,10 @@ namespace vMenuClient.menus
             if (IsAllowed(Permission.WPParachute))
             {
                 // main parachute options menu setup
-                var parachuteMenu = new Menu("Parachute Options", "Parachute Options");
+                var parachuteMenu = new Menu(" ", "Parachute Options")
+                {
+                    HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+                };
                 var parachuteBtn = new MenuItem("Parachute Options", "All parachute related options can be changed here.") { Label = "→→→" };
 
                 MenuController.AddSubmenu(menu, parachuteMenu);
@@ -431,28 +441,52 @@ namespace vMenuClient.menus
             var spacer = GetSpacerMenuItem("↓ Weapon Categories ↓");
             menu.AddMenuItem(spacer);
 
-            var handGuns = new Menu("Weapons", "Handguns");
+            var handGuns = new Menu(" ", "Handguns")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             var handGunsBtn = new MenuItem("Handguns");
 
-            var rifles = new Menu("Weapons", "Assault Rifles");
+            var rifles = new Menu(" ", "Assault Rifles")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             var riflesBtn = new MenuItem("Assault Rifles");
 
-            var shotguns = new Menu("Weapons", "Shotguns");
+            var shotguns = new Menu(" ", "Shotguns")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             var shotgunsBtn = new MenuItem("Shotguns");
 
-            var smgs = new Menu("Weapons", "Sub-/Light Machine Guns");
+            var smgs = new Menu(" ", "Sub-/Light Machine Guns")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             var smgsBtn = new MenuItem("Sub-/Light Machine Guns");
 
-            var throwables = new Menu("Weapons", "Throwables");
+            var throwables = new Menu(" ", "Throwables")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             var throwablesBtn = new MenuItem("Throwables");
 
-            var melee = new Menu("Weapons", "Melee");
+            var melee = new Menu(" ", "Melee")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             var meleeBtn = new MenuItem("Melee");
 
-            var heavy = new Menu("Weapons", "Heavy Weapons");
+            var heavy = new Menu(" ", "Heavy Weapons")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             var heavyBtn = new MenuItem("Heavy Weapons");
 
-            var snipers = new Menu("Weapons", "Sniper Rifles");
+            var snipers = new Menu(" ", "Sniper Rifles")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             var snipersBtn = new MenuItem("Sniper Rifles");
 
             MenuController.AddSubmenu(menu, handGuns);
@@ -509,7 +543,8 @@ namespace vMenuClient.menus
                     #region Create menu for this weapon and add buttons
                     var weaponMenu = new Menu("Weapon Options", weapon.Name)
                     {
-                        ShowWeaponStatsPanel = true
+                        ShowWeaponStatsPanel = true,
+                        HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
                     };
                     var stats = new Game.WeaponHudStats();
                     Game.GetWeaponHudStats(weapon.Hash, ref stats);

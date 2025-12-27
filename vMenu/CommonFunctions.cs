@@ -3281,69 +3281,6 @@ namespace vMenuClient
         }
         #endregion
 
-        #region Private message notification
-        public static void PrivateMessage(string source, string message) => PrivateMessage(source, message, false);
-        public static async void PrivateMessage(string source, string message, bool sent)
-        {
-            MainMenu.PlayersList.RequestPlayerList();
-            await MainMenu.PlayersList.WaitRequested();
-
-            var name = MainMenu.PlayersList.ToList()
-                .Find(plr => plr.ServerId.ToString() == source)?.Name ?? "**Invalid**";
-
-            if (MainMenu.MiscSettingsMenu == null || MainMenu.MiscSettingsMenu.MiscDisablePrivateMessages)
-            {
-                if (!(sent && source == Game.Player.ServerId.ToString()))
-                {
-                    TriggerServerEvent("vMenu:PmsDisabled", source);
-                }
-                return;
-            }
-
-            var sourcePlayer = new Player(GetPlayerFromServerId(int.Parse(source)));
-            if (sourcePlayer != null)
-            {
-                var headshotHandle = RegisterPedheadshot(sourcePlayer.Character.Handle);
-                var timer = GetGameTimer();
-                var tookTooLong = false;
-                while (!IsPedheadshotReady(headshotHandle) || !IsPedheadshotValid(headshotHandle))
-                {
-                    await Delay(0);
-                    if (GetGameTimer() - timer > 2000)
-                    {
-                        // took too long.
-                        tookTooLong = true;
-                        break;
-                    }
-                }
-                if (!tookTooLong)
-                {
-                    var headshotTxd = GetPedheadshotTxdString(headshotHandle);
-                    if (sent)
-                    {
-                        Notify.CustomImage(headshotTxd, headshotTxd, message, $"<C>{GetSafePlayerName(name)}</C>", "Message Sent", true, 1);
-                    }
-                    else
-                    {
-                        Notify.CustomImage(headshotTxd, headshotTxd, message, $"<C>{GetSafePlayerName(name)}</C>", "Message Received", true, 1);
-                    }
-                }
-                else
-                {
-                    if (sent)
-                    {
-                        Notify.Custom($"PM From: <C>{GetSafePlayerName(name)}</C>. Message: {message}");
-                    }
-                    else
-                    {
-                        Notify.Custom($"PM To: <C>{GetSafePlayerName(name)}</C>. Message: {message}");
-                    }
-                }
-                UnregisterPedheadshot(headshotHandle);
-            }
-        }
-        #endregion
-
         #region Keyfob personal vehicle func
         public static async void PressKeyFob(Vehicle veh)
         {

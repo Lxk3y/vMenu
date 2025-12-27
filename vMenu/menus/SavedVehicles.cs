@@ -18,10 +18,22 @@ namespace vMenuClient.menus
         // Variables
         private Menu classMenu;
         private Menu savedVehicleTypeMenu;
-        private readonly Menu vehicleCategoryMenu = new("Categories", "Manage Saved Vehicles");
-        private readonly Menu savedVehiclesCategoryMenu = new("Category", "I get updated at runtime!");
-        private readonly Menu selectedVehicleMenu = new("Manage Vehicle", "Manage this saved vehicle.");
-        private readonly Menu unavailableVehiclesMenu = new("Missing Vehicles", "Unavailable Saved Vehicles");
+        private readonly Menu vehicleCategoryMenu = new Menu(" ", "Manage Saved Vehicles")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        private readonly Menu savedVehiclesCategoryMenu = new Menu(" ", "I get updated at runtime!")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        private readonly Menu selectedVehicleMenu = new Menu(" ", "Manage this saved vehicle.")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        private readonly Menu unavailableVehiclesMenu = new Menu(" ", "Unavailable Saved Vehicles")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
         private Dictionary<string, VehicleInfo> savedVehicles = new();
         private readonly List<Menu> subMenus = new();
         private KeyValuePair<string, VehicleInfo> currentlySelectedVehicle = new();
@@ -37,14 +49,19 @@ namespace vMenuClient.menus
         /// </summary>
         private void CreateClassMenu()
         {
-            var menuTitle = "Saved Vehicles";
             #region Create menus and submenus
             // Create the menu.
-            classMenu = new Menu(menuTitle, "Manage Saved Vehicles");
+            classMenu = new Menu(" ", "Manage Saved Vehicles")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
             for (var i = 0; i < 23; i++)
             {
-                var categoryMenu = new Menu("Saved Vehicles", GetLabelText($"VEH_CLASS_{i}"));
+                Menu categoryMenu = new Menu(" ", GetLabelText($"VEH_CLASS_{i}"))
+                {
+                    HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+                };
 
                 var vehClassButton = new MenuItem(GetLabelText($"VEH_CLASS_{i}"), $"All saved vehicles from the {GetLabelText($"VEH_CLASS_{i}")} category.");
                 subMenus.Add(categoryMenu);
@@ -686,7 +703,10 @@ namespace vMenuClient.menus
 
         private void CreateTypeMenu()
         {
-            savedVehicleTypeMenu = new("Saved Vehicles", "Select from class or custom category");
+            savedVehicleTypeMenu = new Menu(" ", "Select from class or custom category")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
             var saveVehicle = new MenuItem("Save Current Vehicle", "Save the vehicle you are currently sitting in.")
             {

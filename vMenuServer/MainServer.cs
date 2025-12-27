@@ -883,34 +883,6 @@ namespace vMenuServer
                 BanManager.BanCheater(source);
             }
         }
-
-        [EventHandler("vMenu:SendMessageToPlayer")]
-        internal void SendPrivateMessage([FromSource] Player source, int targetServerId, string message)
-        {
-            var targetPlayer = Players[targetServerId];
-            if (targetPlayer != null)
-            {
-                targetPlayer.TriggerEvent("vMenu:PrivateMessage", source.Handle, message);
-
-                foreach (var p in Players)
-                {
-                    if (p != source && p != targetPlayer)
-                    {
-                        if (vMenuShared.PermissionsManager.IsAllowed(vMenuShared.PermissionsManager.Permission.OPSeePrivateMessages, p))
-                        {
-                            p.TriggerEvent("vMenu:Notify", $"[vMenu Staff Log] <C>{source.Name}</C>~s~ sent a PM to <C>{targetPlayer.Name}</C>~s~: {message}");
-                        }
-                    }
-                }
-            }
-        }
-
-        [EventHandler("vMenu:PmsDisabled")]
-        internal void NotifySenderThatDmsAreDisabled([FromSource] Player source, string senderServerId)
-        {
-            var p = Players[int.Parse(senderServerId)];
-            p?.TriggerEvent("vMenu:Notify", $"Sorry, your private message to <C>{source.Name}</C>~s~ could not be delivered because they disabled private messages.");
-        }
         #endregion
 
         #region logging and update checks notifications

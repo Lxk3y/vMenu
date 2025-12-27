@@ -34,7 +34,10 @@ namespace vMenuClient.menus
 
         public int PlayerBlood { get; private set; } = 0;
 
-        private readonly Menu CustomDrivingStyleMenu = new("Driving Style", "Custom Driving Style");
+        private readonly Menu CustomDrivingStyleMenu = new Menu(" ", "Custom Driving Style")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
 
         /// <summary>
         /// Creates the menu.
@@ -43,7 +46,10 @@ namespace vMenuClient.menus
         {
             #region create menu and menu items
             // Create the menu.
-            menu = new Menu(Game.Player.Name, "Player Options");
+            menu = new Menu(" ", "Player Options")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
             // Create all checkboxes.
             var playerGodModeCheckbox = new MenuCheckboxItem("Godmode", "Makes you invincible.", PlayerGodMode);
@@ -76,7 +82,10 @@ namespace vMenuClient.menus
             var wetPlayerBtn = new MenuItem("Wet Player Clothes", "Make your player clothes wet.");
             var suicidePlayerBtn = new MenuItem("~r~Commit Suicide", "Kill yourself by taking the pill. Or by using a pistol if you have one.");
 
-            var vehicleAutoPilot = new Menu("Auto Pilot", "Vehicle auto pilot options.");
+            Menu vehicleAutoPilot = new Menu(" ", "Vehicle auto pilot options.")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
             MenuController.AddSubmenu(menu, vehicleAutoPilot);
 

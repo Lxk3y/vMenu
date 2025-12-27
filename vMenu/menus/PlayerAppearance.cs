@@ -22,11 +22,26 @@ namespace vMenuClient.menus
         private Menu savedPedsMenu;
         private Menu spawnPedsMenu;
         private Menu addonPedsMenu;
-        private readonly Menu mainPedsMenu = new("Main Peds", "Spawn A Ped");
-        private readonly Menu animalsPedsMenu = new("Animals", "Spawn A Ped");
-        private readonly Menu malePedsMenu = new("Male Peds", "Spawn A Ped");
-        private readonly Menu femalePedsMenu = new("Female Peds", "Spawn A Ped");
-        private readonly Menu otherPedsMenu = new("Other Peds", "Spawn A Ped");
+        private readonly Menu mainPedsMenu = new Menu(" ", "Spawn A Ped")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        private readonly Menu animalsPedsMenu = new Menu(" ", "Spawn A Ped")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        private readonly Menu malePedsMenu = new Menu(" ", "Spawn A Ped")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        private readonly Menu femalePedsMenu = new Menu(" ", "Spawn A Ped")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
+        private readonly Menu otherPedsMenu = new Menu(" ", "Spawn A Ped")
+        {
+            HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+        };
 
         public static Dictionary<string, uint> AddonPeds;
 
@@ -42,13 +57,34 @@ namespace vMenuClient.menus
         private void CreateMenu()
         {
             // Create the menu.
-            menu = new Menu(Game.Player.Name, "Player Appearance");
-            savedPedsMenu = new Menu(Game.Player.Name, "Saved Peds");
-            pedCustomizationMenu = new Menu(Game.Player.Name, "Customize Saved Ped");
-            pedCollectionsMenu = new Menu(Game.Player.Name, "Ped Collections");
-            pedCollectionsCustomizationMenu = new Menu(Game.Player.Name, "I get updated at runtime!");
-            spawnPedsMenu = new Menu(Game.Player.Name, "Spawn Ped");
-            addonPedsMenu = new Menu(Game.Player.Name, "Addon Peds");
+            menu = new Menu(" ", "Player Appearance")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            savedPedsMenu = new Menu(" ", "Saved Peds")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            pedCustomizationMenu = new Menu(" ", "Customize Saved Ped")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            pedCollectionsMenu = new Menu(" ", "Ped Collections")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            pedCollectionsCustomizationMenu = new Menu(" ", "I get updated at runtime!")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            spawnPedsMenu = new Menu(" ", "Spawn Ped")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            addonPedsMenu = new Menu(" ", "Addon Peds")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
 
             // Add the (submenus) to the menu pool.
@@ -112,7 +148,10 @@ namespace vMenuClient.menus
             MenuController.BindMenuItem(menu, savedPedsMenu, savedPedsBtn);
             MenuController.BindMenuItem(menu, spawnPedsMenu, spawnPedsBtn);
 
-            var selectedSavedPedMenu = new Menu("Saved Ped", "renameme");
+            Menu selectedSavedPedMenu = new Menu(" ", "renameme")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             MenuController.AddSubmenu(savedPedsMenu, selectedSavedPedMenu);
             var spawnSavedPed = new MenuItem("Spawn Saved Ped", "Spawn this saved ped.");
             var cloneSavedPed = new MenuItem("Clone Saved Ped", "Clone this saved ped.");

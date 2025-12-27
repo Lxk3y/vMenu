@@ -68,11 +68,17 @@ namespace vMenuClient.menus
         private void CreateMenu()
         {
             // Create the menu.
-            menu = new Menu(Game.Player.Name, "Vehicle Options");
+            menu = new Menu(" ", "Vehicle Options")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
             #region menu items variables
             // vehicle god mode menu
-            var vehGodMenu = new Menu("Vehicle Godmode", "Vehicle Godmode Options");
+            var vehGodMenu = new Menu("Vehicle Godmode", "Vehicle Godmode Options")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             var vehGodMenuBtn = new MenuItem("God Mode Options", "Enable or disable specific damage types.") { Label = "→→→" };
             MenuController.AddSubmenu(menu, vehGodMenu);
 
@@ -206,7 +212,10 @@ namespace vMenuClient.menus
 
             #region Submenus
             // Submenu's
-            VehicleModMenu = new Menu("Mod Menu", "Vehicle Mods");
+            VehicleModMenu = new Menu("Mod Menu", "Vehicle Mods")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             VehicleModMenu.InstructionalButtons.Add(Control.Jump, "Toggle Vehicle Doors");
             VehicleModMenu.ButtonPressHandlers.Add(new Menu.ButtonPressHandler(Control.Jump, Menu.ControlPressCheckType.JUST_PRESSED, new Action<Menu, Control>((m, c) =>
             {
@@ -227,13 +236,34 @@ namespace vMenuClient.menus
                     }
                 }
             }), false));
-            VehicleDoorsMenu = new Menu("Vehicle Doors", "Vehicle Doors Management");
-            VehicleWindowsMenu = new Menu("Vehicle Windows", "Vehicle Windows Management");
-            VehicleComponentsMenu = new Menu("Vehicle Extras", "Vehicle Extras/Components");
-            VehicleLiveriesMenu = new Menu("Vehicle Liveries", "Vehicle Liveries");
-            VehicleColorsMenu = new Menu("Vehicle Colors", "Vehicle Colors");
-            DeleteConfirmMenu = new Menu("Confirm Action", "Delete Vehicle, Are You Sure?");
-            VehicleUnderglowMenu = new Menu("Vehicle Neon Kits", "Vehicle Neon Underglow Options");
+            VehicleDoorsMenu = new Menu("Vehicle Doors", "Vehicle Doors Management")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            VehicleWindowsMenu = new Menu("Vehicle Windows", "Vehicle Windows Management")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            VehicleComponentsMenu = new Menu("Vehicle Extras", "Vehicle Extras/Components")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            VehicleLiveriesMenu = new Menu("Vehicle Liveries", "Vehicle Liveries")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            VehicleColorsMenu = new Menu("Vehicle Colors", "Vehicle Colors")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            DeleteConfirmMenu = new Menu("Confirm Action", "Delete Vehicle, Are You Sure?")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
+            VehicleUnderglowMenu = new Menu("Vehicle Neon Kits", "Vehicle Neon Underglow Options")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
 
             MenuController.AddSubmenu(menu, VehicleModMenu);
             MenuController.AddSubmenu(menu, VehicleDoorsMenu);
@@ -1029,7 +1059,10 @@ namespace vMenuClient.menus
 
             #region Vehicle Colors Submenu Stuff
             // primary menu
-            var primaryColorsMenu = new Menu("Vehicle Colors", "Primary Colors");
+            var primaryColorsMenu = new Menu("Vehicle Colors", "Primary Colors")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             MenuController.AddSubmenu(VehicleColorsMenu, primaryColorsMenu);
 
             var primaryColorsBtn = new MenuItem("Primary Color") { Label = "→→→" };
@@ -1037,7 +1070,10 @@ namespace vMenuClient.menus
             MenuController.BindMenuItem(VehicleColorsMenu, primaryColorsMenu, primaryColorsBtn);
 
             // secondary menu
-            var secondaryColorsMenu = new Menu("Vehicle Colors", "Secondary Colors");
+            var secondaryColorsMenu = new Menu("Vehicle Colors", "Secondary Colors")
+            {
+                HeaderTexture = new KeyValuePair<string, string>("rsrptextures", "banner8")
+            };
             MenuController.AddSubmenu(VehicleColorsMenu, secondaryColorsMenu);
 
             var secondaryColorsBtn = new MenuItem("Secondary Color") { Label = "→→→" };
@@ -2106,7 +2142,7 @@ namespace vMenuClient.menus
                 var headlightColor = new MenuListItem("Headlight Color", new List<string>() { "White", "Blue", "Electric Blue", "Mint Green", "Lime Green", "Yellow", "Golden Shower", "Orange", "Red", "Pony Pink", "Hot Pink", "Purple", "Blacklight", "Default Xenon" }, currentHeadlightColor, "New in the Arena Wars GTA V update: Colored headlights. Note you must enable Xenon Headlights first.");
                 VehicleModMenu.AddMenuItem(headlightColor);
                 VehicleModMenu.AddMenuItem(turbo);
-                VehicleModMenu.AddMenuItem(bulletProofTires);
+                //VehicleModMenu.AddMenuItem(bulletProofTires);
 
                 bool isLowGripAvailable = GetGameBuildNumber() >= 2372;
                 var lowGripTires = new MenuCheckboxItem("Low Grip Tires", "Enable or disable ~y~low grip tires~s~ for this vehicle.", isLowGripAvailable ? GetDriftTyresEnabled(veh.Handle) : false);
